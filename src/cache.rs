@@ -263,23 +263,23 @@ impl Cache {
         let mut specs: HashSet<Spec> = HashSet::new();
 
         for device in devices {
-            //if let Some(dev) = self.devices.get(&device) {
-            //    let mut spec = dev.get_spec();
-            //    if specs.insert(spec.clone()) {
+            if let Some(dev) = self.devices.get(&device) {
+                let mut spec = dev.get_spec();
+                if specs.insert(spec.clone()) {
                     // spec.edits may be none when we only have dev.edits
                     // allow dev.edits to be added even if spec.edits is None
-            //        if let Some(ce) = spec.edits() {
-            //            edits.append(ce)?
-            //        }
-            //    }
-            //    edits.append(dev.edits())?;
-            //} else {
+                    if let Some(ce) = spec.edits() {
+                        edits.append(ce)?
+                    }
+                }
+                edits.append(dev.edits())?;
+            } else {
                 unresolved.push(device);
-            //}
+            }
         }
 
         if !unresolved.is_empty() {
-            return Err(format!("unresolvable CDI devices {}", unresolved.join(", ")).into());
+            return Err(format!("xxxxx unresolvable CDI devices {}", unresolved.join(", ")).into());
         }
 
         if let Err(err) = edits.apply(oci_spec) {
