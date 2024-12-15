@@ -63,8 +63,8 @@ impl ContainerEdits {
 
                 //dn.fill_missing_info()
                 //    .context("filling missing info failed.")?;
-                dn.fill_missing_info()
-                    .context(format!("111111111 no such hook with name: {:?}", d.clone()))?;
+                //dn.fill_missing_info()
+                //    .context(format!("111111111 no such hook with name: {:?}", d.clone()))?;
 
                 let d = &dn.node;
                 let mut dev = dn.node.to_oci()?;
