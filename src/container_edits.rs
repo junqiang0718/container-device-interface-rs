@@ -244,11 +244,6 @@ impl DeviceNode {
             }
         }
 
-                return Err(anyhow!(
-                    "111111111111 CDI device ({}, {})",
-                    self.node.path,
-                    host_path,
-                ));
         let (dev_type, major, minor) = device_info_from_path(host_path)?;
         match self.node.r#type.as_deref() {
             None => self.node.r#type = Some(dev_type),
@@ -264,11 +259,6 @@ impl DeviceNode {
             _ => {}
         }
 
-                return Err(anyhow!(
-                    "211111111111 CDI device ({}, {})",
-                    self.node.path,
-                    host_path,
-                ));
         if self.node.major.is_none()
             && self.node.r#type.as_deref() != Some(&DeviceType::Fifo.to_string())
         {
@@ -276,11 +266,6 @@ impl DeviceNode {
             self.node.minor = Some(minor);
         }
 
-                return Err(anyhow!(
-                    "311111111111 CDI device ({}, {})",
-                    self.node.path,
-                    host_path,
-                ));
         Ok((fill_missing_info))
     }
 }
